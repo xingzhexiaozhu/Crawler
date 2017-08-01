@@ -8,30 +8,66 @@
       
       
 # 解析HTML网页---Jsoup
-Maven中配置：
-      <dependency>
-         <groupId>org.jsoup</gorup>
-         <artifactId>jsoup</artifactId>
-         <version>1.10.3</version>
-      </dependency>
+Maven中配置：   
+      <dependency>   
+         <groupId>org.jsoup</gorup>   
+         <artifactId>jsoup</artifactId>   
+         <version>1.10.3</version>   
+      </dependency>   
       
       
 # 解析Json数据---Json
-Maven中配置：
-      <dependency>
-         <groupId>com.alibabap</gorup>
-         <artifactId>fastjson</artifactId>
-         <version>1.2.35.3</version>
-      </dependency>
+Maven中配置：   
+      <dependency>   
+         <groupId>com.alibabap</gorup>   
+         <artifactId>fastjson</artifactId>   
+         <version>1.2.35.3</version>   
+      </dependency>   
 
 
 # 评估页面的重要程度
-1.链接的欢迎程度---反向链接（即指向当前URL的链接）的数量和质量决定的，定义为IB(P)；  
-2.链接的重要程度---关于URL字符串的函数，仅仅考察字符串本身，比如认为".com"和"home"的URL比".cc"和"map"高，定义为IL(P)；  
-3.平均链接的深度---根据上面所分析的宽度优先的原则，计算全站的平均链接深度，然后认为距离种子站点越近的重要性越高，定义为ID(P)；  
+1.链接的欢迎程度---反向链接（即指向当前URL的链接）的数量和质量决定的，定义为IB(P)；   
+2.链接的重要程度---关于URL字符串的函数，仅仅考察字符串本身，比如认为".com"和"home"的URL比".cc"和"map"高，定义为IL(P)；   
+3.平均链接的深度---根据上面所分析的宽度优先的原则，计算全站的平均链接深度，然后认为距离种子站点越近的重要性越高，定义为ID(P)；   
+
 则网页的重要性I(P)=X*IB(P)+Y*IL(P)，ID(P)由宽度优先遍历规则保证   
 
 
 # 存储
-内存数据结构并不适合大规模爬虫的应用，因此采用内存数据库---Berkeley DB  
-成熟的开源爬虫软件---Heritrix（爬虫队列）  
+1、Berkeley DB， 内存数据库，内存数据结构并不适合大规模爬虫的应用
+   （1）底层实现B树；
+   （2）key/value结构；
+   （3）布隆过滤器；    
+2、Heritrix，成熟的开源爬虫软件    
+   （1）封闭Berkeley DB，存放所有待处理的链接，过滤已被抓取的连接(BdbUriUniFilter)； 
+   （2） 模块化的设计，各模块由CrawlController类协调，负责整个爬虫任务的开始的结束；
+
+
+# 爬虫队列
+保存爬下来的URL，具备以下几个特点：
+1.能够存储海量数据，当内存容量不够时可以固化在硬盘；   
+2.快速存取数据；
+3.支持多线程访问；
+
+因此采用Hash存储，一般选取URL作为key值，选取MD5压缩算法
+
+
+# 爬虫架构
+一、应该满足的条件
+1.分布式
+2.可伸缩性：能通过增加额外的机器和带宽提高抓取速度
+3.性能和有效性：有效使用系统资源，如CPU、网络带宽、和存储空间
+4.质量：针对大部分网络不能及时出现在用户查询中，所以应该首先抓取重要网页
+5.新鲜性：持续运行
+6.更新：爬虫应该取得已获取网页的新的拷贝，例如网站的回贴功能
+7.可扩展性：为了能够支持新的数据格式和新的抓取协议，爬虫应该设计成模块化的形式
+
+二、实现异步I/O的框架
+1.Mina---借由Java的NIO的反应式实现的模拟前摄式模型；
+2.Grizzly---Web服务器GlassFish的I/O核心；
+3.Netty---NIO客户端服务器框架；
+4.Naga---把普通的Socket和ServerSocket封装成支持NIO的形式；
+
+
+
+
