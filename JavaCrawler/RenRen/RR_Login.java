@@ -36,8 +36,8 @@ public class RR_Login {
 
         //以Post方式请求，设置登录用户名和密码
         List<NameValuePair> nameValuePairs = new ArrayList<>();
-        nameValuePairs.add(new BasicNameValuePair("email", "15671628302"));
-        nameValuePairs.add(new BasicNameValuePair("password", "zl19921013"));
+        nameValuePairs.add(new BasicNameValuePair("email", "156******")); //这里改为自己的用户名
+        nameValuePairs.add(new BasicNameValuePair("password", "*******"));//这里改为自己的密码
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
