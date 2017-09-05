@@ -1,5 +1,0 @@
-当前页：13
-日期：2016-03-15 08:59	标题：
-        super.getClass()方法调用            
-        	链接：http://blog.csdn.net/u012050154/article/details/50893623	阅读：阅	评论：评
-

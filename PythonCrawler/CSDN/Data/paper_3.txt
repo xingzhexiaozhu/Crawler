@@ -1,5 +1,0 @@
-当前页：3
-日期：2016-12-12 15:03	标题：
-        Linux IO模式及 select、poll、epoll详解            
-        	链接：http://blog.csdn.net/u012050154/article/details/53582848	阅读：阅	评论：评
-
