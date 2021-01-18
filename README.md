@@ -1,50 +1,47 @@
-# 关于Python3爬虫和Java爬虫的代码
+# 关于Python3爬虫和Java爬虫的读书笔记
 
-
-
-#  读书笔记
-
-# 宽度优先搜索策略
+## 宽度优先搜索策略
 原因：
-- （1）深度优先遍历可能会在深度上过“深”而陷入“黑洞”；    
-- （2）重要的网页往往距离种子网页比较近，越深的网页的重要性越低；   
-- （3）万维网深度最多17层，但到达某面总存在一条很短的路径，宽度优先遍历会以最快的速度达到这个网页；  
-- （4）宽度优先遍历有利于多爬虫的合作抓取，多爬虫合作通常先抓取站内链接，抓取的封闭性很强；
+1. 深度优先遍历可能会在深度上过“深”而陷入“黑洞”；    
+2. 重要的网页往往距离种子网页比较近，越深的网页的重要性越低；   
+3. 万维网深度最多17层，但到达某面总存在一条很短的路径，宽度优先遍历会以最快的速度达到这个网页；  
+4. 宽度优先遍历有利于多爬虫的合作抓取，多爬虫合作通常先抓取站内链接，抓取的封闭性很强；
       
       
-# 解析HTML网页---Jsoup
-Maven中配置：   
-      <dependency>   
-         <groupId>org.jsoup</gorup>   
-         <artifactId>jsoup</artifactId>   
-         <version>1.10.3</version>   
-      </dependency>   
-
-正则表达式：
-    （1）对URL进行过滤，只提取符合特定格式的链接；
-    （2）提取网页内容；
-HTMLParser：
-    （1）文本抽取；
-    （2）链接抽取；
-    （3）资源抽取；
-    （4）链接检查；
-    （5）站点检查；
-    （6）URL重写；
-    （7）广告清除；
-    （8）将HTML页面转化成XML页面；
-    （9）HTML页面清理；
+## 解析HTML网页---Jsoup
+(```)
+Maven中配置：
+<dependency>   
+   <groupId>org.jsoup</gorup>   
+   <artifactId>jsoup</artifactId>   
+   <version>1.10.3</version>   
+</dependency>   
+(```)
+### 正则表达式：
+- 对URL进行过滤，只提取符合特定格式的链接；
+- 提取网页内容；
+### HTMLParser：
+- 文本抽取；
+- 链接抽取；
+- 资源抽取；
+- 链接检查；
+- 站点检查；
+- URL重写；
+- 广告清除；
+- 将HTML页面转化成XML页面；
+- HTML页面清理；
 Rhino是一个由Java实现的JavaScript语言解析引擎，Rhino的主要功能是管理脚本执行时的运行环境
 
-非HTML解析：
-　　　1.PDF文件：PDFBox解析PDF文件
-         （1）FontBox：处理PDF字体的Java类库
-         （2）JempBox处理XMP元数据 的Java类库
-      2.Office文档：POI项目
-         （1）POI读写Excel、Word、PPT文件
-         （2）POI-HSMF读写Outlook
-         （3）POI-HDGF读写Visio
-         （4）POI-HPBF支持Publisher
-      3.其他文件
+## 非HTML解析：
+1. PDF文件：PDFBox解析PDF文件
+- FontBox：处理PDF字体的Java类库
+- JempBox处理XMP元数据 的Java类库
+2. Office文档：POI项目
+- POI读写Excel、Word、PPT文件
+- POI-HSMF读写Outlook
+- POI-HDGF读写Visio
+- POI-HPBF支持Publisher
+3. 其他文件
 
 多媒体内容抽取：
       1.抽取视频内容      
